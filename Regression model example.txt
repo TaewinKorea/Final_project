@@ -1,0 +1,30 @@
+################################## Regression model  ##########################
+
+library(reshape2) # to load tips data
+library(tidyverse)
+library(tidymodels) # for the fit() function
+library(plotly)
+
+data(tips)
+
+y <- tips$tip
+X <- tips$total_bill
+
+lm_model <- linear_reg() %>% 
+    set_engine('lm') %>% 
+    set_mode('regression') %>%
+    fit(tip ~ total_bill, data = tips) 
+
+x_range <- seq(min(X), max(X), length.out = 100)
+x_range <- matrix(x_range, nrow=100, ncol=1)
+xdf <- data.frame(x_range)
+colnames(xdf) <- c('total_bill')
+
+ydf <- lm_model %>% predict(xdf) 
+
+colnames(ydf) <- c('tip')
+xy <- data.frame(xdf, ydf) 
+
+fig <- plot_ly(tips, x = ~total_bill, y = ~tip, type = 'scatter', alpha = 0.65, mode = 'markers', name = 'Tips')
+fig <- fig %>% add_trace(data = xy, x = ~total_bill, y = ~tip, name = 'Regression Fit', mode = 'lines', alpha = 1)
+fig
