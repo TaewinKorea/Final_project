@@ -66,12 +66,15 @@ tapply(All_FC_Data$Beyond_Capacity, All_FC_Data$FC_Name, sum)
 library(forecast)
 FC1$Daily_Order <- rowSums(FC1[,c(4:27)],na.rm=TRUE)
 Forecast_Nov_FC1 <- forecast(FC1$Daily_Order, h=30)
+Forecast_Nov_FC1
 
 FC2$Daily_Order <- rowSums(FC2[,c(4:27)],na.rm=TRUE)
 Forecast_Nov_FC2 <- forecast(FC2$Daily_Order, h=30)
+Forecast_Nov_FC2
 
 FC3$Daily_Order <- rowSums(FC3[,c(4:27)],na.rm=TRUE)
 Forecast_Nov_FC3 <- forecast(FC3$Daily_Order, h=30)
+Forecast_Nov_FC3
 
 ### by using Regression model ###
 relation_FC1 <- lm(FC1$Daily_order ~ FC1$Seq)
