@@ -56,23 +56,18 @@ Forecast_Nov_FC3 <- forecast(FC3$Daily_Order, h=30)
 relation_FC1 <- lm(FC1$Daily_order ~ FC1$Seq)
 print(relation_FC1)
 summary(relation_FC1)
-png(file="linear_FC1.png")
 plot(FC1$Seq,FC1$Daily_order, col = "blue", main = "Timeseries regression",
 abline(lm(FC1$Daily_order ~ FC1$Seq)), cex =1.3, pch =16, xlab="Day", ylab="Order")
-dev.off()
 
 relation_FC2 <- lm(FC2$Daily_order ~ FC2$Seq)
 print(relation_FC2)
 summary(relation_FC2)
-png(file="linear_FC2.png")
 plot(FC2$Seq,FC2$Daily_order, col = "blue", main = "Timeseries regression",
      abline(lm(FC2$Daily_order ~ FC2$Seq)), cex =1.3, pch =16, xlab="Day", ylab="Order")
-dev.off()
 
 relation_FC3 <- lm(FC3$Daily_order ~ FC1$Seq)
 print(relation_FC3)
 summary(relation_FC3)
-png(file="linear_FC3.png")
 plot(FC3$Seq,FC3$Daily_order, col = "blue", main = "Timeseries regression",
      abline(lm(FC3$Daily_order ~ FC3$Seq)), cex =1.3, pch =16, xlab="Day", ylab="Order")
-dev.off()
+
